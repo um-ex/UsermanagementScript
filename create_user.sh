@@ -17,7 +17,7 @@ csv_file=$1   # first argument: path to CSV file (username,role)
 # Validate CSV file existence
 function check_csv() {
     if [[ ! -f "$csv_file" ]]; then
-        echo "❌ CSV file not found: $csv_file"
+        echo "CSV file not found: $csv_file"
         exit 1
     fi
 }
@@ -82,7 +82,7 @@ function mysql_create() {
     local existing_user=$(mysql -h "$host" -P "$port" -u "$admin_user" -p"$password" -N -B -e "$check_user" 2>>"$error_log")
 
     if [[ "$existing_user" == "$new_user" ]]; then
-        echo "⚠️  User '$new_user' already exists on $host" >&2
+        echo "User '$new_user' already exists on $host" >&2
     else
         # Generate a random secure password
         local gen_pass=$(openssl rand -base64 12)
@@ -97,7 +97,7 @@ function mysql_create() {
             #echo "User '$new_user' created successfully on $host"
             echo "$gen_pass"
             echo "$new_user,$role,$gen_pass,$host" >> "$pass_storage"
-            echo "✅ User '$new_user' created successfully on $host with role '$role'" >&2  # console only       
+            echo "User '$new_user' created successfully on $host with role '$role'" >&2  # console only       
         else
             echo "Failed to create user '$new_user' on $host (see $error_log)" >&2
         fi
@@ -130,7 +130,7 @@ function create_qa_users() {
             fi 
         done
         if [[ $valid -eq 0 ]]; then
-            echo "❌ Invalid role '$role' for user '$new_user' (QA Server)" >&2
+            echo "Invalid role '$role' for user '$new_user' (QA Server)" >&2
             continue
         fi
 
@@ -179,7 +179,7 @@ function create_prod_users() {
             fi 
         done
         if [[ $valid -eq 0 ]]; then
-            echo "❌ Invalid role '$role' for user '$new_user'" >&2
+            echo "Invalid role '$role' for user '$new_user'" >&2
             continue
         fi
 
