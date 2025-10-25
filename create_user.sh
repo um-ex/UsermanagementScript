@@ -112,7 +112,7 @@ function create_qa_users() {
     local existing_roles=(${QA_ROLES[*]})
     local qa_store=(${QA_STORAGE_LOCATION[*]})
     local qa_err=(${QA_ERROR_LOGS[*]})
-    local no_of_dbs=${#qa_hosts[@]}   
+    local no_of_hosts=${#qa_hosts[@]}   
 
     echo "Processing CSV users for QA..."
     while IFS=',' read -r new_user role email; do
@@ -135,7 +135,7 @@ function create_qa_users() {
         fi
 
         local qa_info=""
-        for ((i=0; i<$no_of_dbs; i++)); do
+        for ((i=0; i<$no_of_hosts; i++)); do
             host="${qa_hosts[$i]}"
             storage_file="$qa_store/qa_users_${host//./_}.csv"
             error_file="$qa_err/qa_errors_${host//./_}.log"
@@ -163,7 +163,7 @@ function create_prod_users() {
     local existing_roles=(${PROD_ROLES[*]})
     local prod_store=(${PROD_STORAGE_LOCATION[*]})
     local prod_err=(${PROD_ERROR_LOGS[*]})
-    local no_of_dbs=${#prod_hosts[*]}
+    local no_of_hosts=${#prod_hosts[*]}
 
     echo "Processing CSV users for PROD..."
     while IFS=',' read -r new_user role email; do
@@ -184,7 +184,7 @@ function create_prod_users() {
         fi
 
         local prod_info=""
-        for ((i=0; i<$no_of_dbs; i++)); do
+        for ((i=0; i<$no_of_hosts; i++)); do
             host="${prod_hosts[$i]}"
             storage_file="$prod_store/prod_users_${host//./_}.csv"
             error_file="$prod_err/prod_errors_${host//./_}.log"

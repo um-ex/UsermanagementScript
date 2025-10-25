@@ -29,7 +29,7 @@ rahul,DEVELOPER,rahul@gmail.com
 alex,ADMIN,alex@gmail.com
 ```
 
-## Deletion Script
+### Deletion Script
 
 The CSV file should have the following columns:
 
