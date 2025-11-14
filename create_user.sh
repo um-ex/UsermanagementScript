@@ -226,9 +226,9 @@ select ENV in QA PRODUCTION BOTH; do
             ;;
         BOTH)
             echo "Selected BOTH environments"
-            echo "--------- QA CREATION ---------"
+            echo "--------- QA USER CREATION ---------"
             create_qa_users
-            echo "--------- PROD CREATION ---------"
+            echo "--------- PROD USER CREATION ---------"
             create_prod_users
             break
             ;;
